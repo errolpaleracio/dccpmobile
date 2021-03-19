@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
                 String password = etPassword.getText().toString();
 
                 WebAPI webAPI = new WebAPI(MainActivity.this.getApplication());
-
-                webAPI.login(username, password, new ABSTRACTAPIListener(){
+                User user = new User(username, password);
+                webAPI.login(user, new ABSTRACTAPIListener(){
                     @Override
                     public void onLogin(boolean loggedIn) {
                         if(loggedIn){

@@ -157,7 +157,7 @@
         android:layout_marginLeft="84dp"
         android:layout_marginTop="5dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         app:layout_constraintStart_toEndOf="@+id/tvPassword2"
         app:layout_constraintTop_toBottomOf="@+id/etUsername2" />
 
@@ -168,8 +168,9 @@
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="8dp"
+        android:autoText="false"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textAutoComplete"
         app:layout_constraintStart_toEndOf="@+id/tvRetypePassword"
         app:layout_constraintTop_toBottomOf="@+id/etPassword2" />
 
@@ -181,8 +182,42 @@
         android:layout_marginLeft="116dp"
         android:layout_marginTop="4dp"
         android:ems="10"
-        android:inputType="textPersonName"
         app:layout_constraintStart_toEndOf="@+id/tvEmail"
         app:layout_constraintTop_toBottomOf="@+id/etRetypePassword" />
+
+    <TextView
+        android:id="@+id/textViewContactNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:text="CONTACT NO"
+        android:inputType="textEmailAddress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
+
+    <EditText
+        android:id="@+id/etContactNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:layout_marginLeft="76dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/textViewContactNo"
+        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+
+    <Button
+        android:id="@+id/btnSignUpSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        android:layout_marginLeft="176dp"
+        android:layout_marginTop="8dp"
+        android:text="SUBMIT"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etContactNo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

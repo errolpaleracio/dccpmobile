@@ -16,8 +16,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class WebAPI{
-    public static final String BASE_URL = "http://192.168.1.196/api/login";
-
     private Application application;
     private RequestQueue requestQueue;
 
@@ -28,12 +26,13 @@ public class WebAPI{
 
     }
 
-    public void login(String username, String password, APIListener listener)
+    public void login(User user, APIListener listener)
     {
+        String url = "http://192.168.1.196/api/login";
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("username", username);
-            jsonObject.put("password", password);
+            jsonObject.put("username", user.getUsername());
+            jsonObject.put("password", user.getPassword());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -52,7 +51,40 @@ public class WebAPI{
             }
         };
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, BASE_URL, jsonObject, successListener, errorListener);
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonObject, successListener, errorListener);
+        requestQueue.add(request);
+    }
+
+    public void register(User user, RegisterListener listener)
+    {
+        String url = "http://192.168.1.196/api/register";
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("username", user.getUsername());
+            jsonObject.put("password", user.getPassword());
+            jsonObject.put("first_name", user.getFirst_name());
+            jsonObject.put("middle_name", user.getMiddle_name());
+            jsonObject.put("last_name", user.getLast_name());
+            jsonObject.put("email", user.getEmail());
+            jsonObject.put("contact_no", user.getContact_no());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Response.Listener<JSONObject> successListener = new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                listener.onRegister(true);
+            }
+        };
+
+        Response.ErrorListener errorListener = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                listener.onRegister(false);
+            }
+        };
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonObject, successListener, errorListener);
         requestQueue.add(request);
     }
 }
